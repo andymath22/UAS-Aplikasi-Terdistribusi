@@ -1,0 +1,99 @@
+FORMAT: 1A
+HOST: http://localhost:3000
+
+# Konveri Mata Uang Documentation
+## Data yang digunakan diambil dari **[https://www.frankfurter.app/docs/](https://www.frankfurter.app/docs/)**
+
+# Group API Documentation
+
+## Konversi Mata Uang [POST /exchange]
+Melakukan konversi mata uang dan mengembalikan hasil konversi mata uang
++ Request
+
+    + Attributes 
+
+        + from (string,required) - Mata uang asal
+        + to (string,required) - Mata uang tujuan
+        + value (number,required) - Total uang yang akan dikonversi
+
+    + Body
+
+            {
+                "from"  : "USD",
+                "to" : "IDR",
+                "value": 10
+            }
+
++ Response 200 (application/json)
+
+    + Body 
+
+            {
+                "amount": 10,
+                "base": "USD",
+                "date": "2021-04-30",
+                "rates": {
+                    "IDR": 144216
+                }
+            }
+
+    + Attributes 
+        + amount: 10 (number) - Total uang yang akan dikonversi
+        + base: USD (string) - Asal mata uang
+        + date: 2021-04-30 (string) - tanggal data terakhir diupdate
+        + rate (object)
+            + kode mata uang: 144216 (number) - hasil konversi mata uang
+
++ Response 500
+
+    + Body
+    
+            internal server error
+
+## List Mata Uang [GET /currencies]
+Mengembalikan data mata uang yang ada
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "AUD": "Australian Dollar",
+                "BGN": "Bulgarian Lev",
+                "BRL": "Brazilian Real",
+                "CAD": "Canadian Dollar",
+                "CHF": "Swiss Franc",
+                "CNY": "Chinese Renminbi Yuan",
+                "CZK": "Czech Koruna",
+                "DKK": "Danish Krone",
+                "EUR": "Euro",
+                "GBP": "British Pound",
+                "HKD": "Hong Kong Dollar",
+                "HRK": "Croatian Kuna",
+                "HUF": "Hungarian Forint",
+                "IDR": "Indonesian Rupiah",
+                "ILS": "Israeli New Sheqel",
+                "INR": "Indian Rupee",
+                "ISK": "Icelandic Króna",
+                "JPY": "Japanese Yen",
+                "KRW": "South Korean Won",
+                "MXN": "Mexican Peso",
+                "MYR": "Malaysian Ringgit",
+                "NOK": "Norwegian Krone",
+                "NZD": "New Zealand Dollar",
+                "PHP": "Philippine Peso",
+                "PLN": "Polish Złoty",
+                "RON": "Romanian Leu",
+                "RUB": "Russian Ruble",
+                "SEK": "Swedish Krona",
+                "SGD": "Singapore Dollar",
+                "THB": "Thai Baht",
+                "TRY": "Turkish Lira",
+                "USD": "United States Dollar",
+                "ZAR": "South African Rand"
+            }
+
++ Response 500
+
+    + Body
+
+            internal server error
